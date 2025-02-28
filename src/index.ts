@@ -18,7 +18,7 @@ const errors: string[] = [];
 const success: string[] = [];
 
 const defaults = {
-	sales_channel: "sc_01JN14ETHSHKJ60HV6ED05D5JA",
+	sales_channel: "sc_01JN33PVTPSKHE8SDH67NC1C53",
 	originCountry: "BR",
 	status: "published",
 };
@@ -330,7 +330,17 @@ const jsonToCsv = (fileName: string) => {
 					? generateSlug(data.handle?.[0])
 					: generateSlug(wcProductParent["Name"]) || null;
 
-				if (handle)
+				if (handle) {
+					const shrinkTitle = wcProduct["Name"]
+						.toString()
+						.replace(wcProductParent["Name"], "")
+						.replace(//g, "-")
+						.replace("- ", "")
+						.trim();
+					const variantTitle =
+						shrinkTitle && shrinkTitle !== ""
+							? shrinkTitle
+							: wcProduct["Name"].replace(//g, "-").trim().toString();
 					medusaProducts.push({
 						// "Product Id"?: string;
 						"Product Handle": handle.toString().replace(//g, "-"),
@@ -354,7 +364,7 @@ const jsonToCsv = (fileName: string) => {
 						"Product Length": wcProductParent["Length (cm)"].toString(),
 						"Product Width": wcProductParent["Width (cm)"].toString(),
 						"Product Height": wcProductParent["Height (cm)"].toString(),
-						"Variant Title": wcProduct["Name"].toString().replace(//g, "-"),
+						"Variant Title": variantTitle,
 						"Variant SKU": data.children[i].sku,
 						"Product Sales Channel 1": defaults.sales_channel,
 						"Product Discountable": true,
@@ -418,6 +428,7 @@ const jsonToCsv = (fileName: string) => {
 						// "Image 7 Url"?: string;
 						// "Image 8 Url"?: string;
 					});
+				}
 			}
 		}
 
