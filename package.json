@@ -10,6 +10,7 @@
 		"add-tags": "ts-node src/helpers/tags.ts",
 		"add-categories": "ts-node src/helpers/categories.ts",
 		"delete-products": "ts-node src/helpers/products-delete.ts",
+		"delete-product-categories": "ts-node src/helpers/products-categories-delete.ts",
 		"test": "jest"
 	},
 	"dependencies": {

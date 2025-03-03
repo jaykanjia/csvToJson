@@ -14,11 +14,15 @@ const getAuthToken = async () => {
 		});
 		const json = await res.json();
 
+		console.log({ token: json.token });
+
 		if (json.token) {
 			return json.token;
 		}
 		throw new Error("not got token");
 	} catch (error) {
+		console.log({ error });
+
 		throw new Error("something went wrong...");
 	}
 };

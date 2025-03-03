@@ -18,7 +18,7 @@ const errors: string[] = [];
 const success: string[] = [];
 
 const defaults = {
-	sales_channel: "sc_01JN33PVTPSKHE8SDH67NC1C53",
+	sales_channel: "sc_01JGXEE5TPQQ5Z03RFYWYHTV8A",
 	originCountry: "BR",
 	status: "published",
 };
